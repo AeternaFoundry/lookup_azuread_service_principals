@@ -6,5 +6,12 @@ data "azuread_service_principals" "service_principals_lookup" {
   ignore_missing = each.value.ignore_missing
   object_ids     = each.value.object_ids
   return_all     = each.value.return_all
+
+  dynamic "timeouts" {
+    for_each = each.value.timeouts != null ? [each.value.timeouts] : []
+    content {
+      read = timeouts.value.read
+    }
+  }
 }
 

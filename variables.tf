@@ -7,6 +7,8 @@ Optional:
     - ignore_missing
     - object_ids
     - return_all
+    - timeouts (block):
+        - read (optional)
 EOT
 
   type = map(object({
@@ -15,6 +17,9 @@ EOT
     ignore_missing = optional(bool)
     object_ids     = optional(list(string))
     return_all     = optional(bool)
+    timeouts = optional(object({
+      read = optional(string)
+    }))
   }))
   validation {
     condition = alltrue([
